@@ -1,6 +1,10 @@
 body{
-    margin:auto;
-    padding:auto;
+    margin:0;
+    padding:0;
+}
+
+html{
+    margin: 0;
 }
 
 header{
@@ -8,4 +12,31 @@ header{
     width: 100%;
     background-color: rgb(243, 190, 58);
     margin:0;
+}
+
+
+.carroussel{
+    height:400px;
+    width: 100%;
+    background-color: grey;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.bouton_catalogue{
+    background-color: white;
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+
+    padding: 25px;
+    margin-left:25px;
+}
+
+.bouton_catalogue:hover{
+    background-color: black;
+    color:white;
+    border: 1px rgb(255, 255, 255) solid;
 }
