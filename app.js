@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const userModel=require("./database.js");
+const userModel=require("./models/user.js");
 
 
 app.set('view engine','ejs');
