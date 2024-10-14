@@ -1,9 +1,9 @@
-const bdd = require("./database.js");
+const bd = require("./database.js");
 
-async function getUserById (id){ //ne pas utiliser les callback
-    sql = "SELECT * FROM utilisateur WHERE id = ?";// c une secu pour eviter le drop database 
-    return new promiseImpl((resolve, reject) => {
-        bdd.query(sql, id, (err, results) =>{
+async function getUserById (id){
+    sql="SELECT * FRO% utilisateur WHERE id= ?";
+    return new Promise((resolve,reject)=>{
+        bdd.query(sql,id,(err,results)=>{
             if (err){
                 return reject(err);
             }
@@ -12,4 +12,4 @@ async function getUserById (id){ //ne pas utiliser les callback
     });
 };
 
-Module.exports = {getUserById};
+module.exports={getUserById};
