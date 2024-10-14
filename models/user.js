@@ -1,4 +1,4 @@
-const bd = require("./database.js");
+const bdd = require("./database.js");
 
 async function getUserById (id){
     sql="SELECT * FROM utilisateur WHERE id= ?";
