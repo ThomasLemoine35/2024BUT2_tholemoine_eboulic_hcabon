@@ -19,9 +19,7 @@ app.get('/', async function(req,res){
     }
 });
 
-app.get('/', function(req,res){
-    res.render('index',{data});
-})
+
 
 app.use(function(req,res){
     res.status(404).render("404");
