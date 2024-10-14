@@ -1,6 +1,11 @@
+body{
+    margin:auto;
+    padding:auto;
+}
+
 header{
     height: 200px;
-    width: 1000px;
-
+    width: 100%;
     background-color: rgb(243, 190, 58);
+    margin:0;
 }
