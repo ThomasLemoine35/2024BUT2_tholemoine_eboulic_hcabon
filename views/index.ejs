@@ -21,7 +21,12 @@
 
 <main>
     <h1>Ta mere</h1>
+
+    <% user.forEach(function(element){ %>
+        <%= element.login %>
+    <%});%>
+
 </main>
 
-<%- include ("footer"); -%>
+<%- include ('footer'); -%>
 
