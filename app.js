@@ -61,6 +61,9 @@ app.post('/login', async function (req,res){
 });
 
 
+app.get('/catalogue',function (req,res){
+    res.render("catalogue", {error:null});
+})
 
 
 app.use(function(req,res){

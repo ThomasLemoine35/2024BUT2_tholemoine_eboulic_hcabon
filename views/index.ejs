@@ -3,13 +3,15 @@
 <%- include ('header'); -%>
 
 <main>
-    <h1>Bienvenue sur LocFit</h1>
+    <h1>Bienvenue sur LocFit  
     <% user.forEach(function(element){ %>
         <%= element.login %>
     <%});%>
+    </h1>
+   
     
     <div class="carroussel">
-        <a class="bouton_catalogue" href="#">
+        <a class="bouton_catalogue" href="catalogue">
             Catalogue
         </a>
     </div>
