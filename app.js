@@ -39,8 +39,8 @@ app.get('/login',function (req,res){
 
 
 app.post('/login', async function (req,res){
-    const login=req.body.login;
-    const mdp=req.body.password;
+    let login=req.body.login;
+    let mdp=req.body.password;
 
     mdp=md5(mdp);
 
