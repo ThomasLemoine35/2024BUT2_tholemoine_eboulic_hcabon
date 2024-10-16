@@ -10,7 +10,7 @@ async function getUserById (id){
             resolve(results);
         });
     });
-};
+}; 
 
 async function checkLogin (login){
     sql="SELECT * FROM utilisateur WHERE login= ?";
@@ -24,4 +24,4 @@ async function checkLogin (login){
     });
 };
 
-module.exports={getUserById};
+module.exports={getUserById, checkLogin};
