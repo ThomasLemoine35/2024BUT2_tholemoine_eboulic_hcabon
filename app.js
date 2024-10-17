@@ -17,6 +17,8 @@ app.use(session({
 }));
 
 
+
+
 app.get('/', async function(req,res){
 
     if (!req.session.userId){
@@ -39,7 +41,7 @@ app.get('/login',function (req,res){
 
 
 app.post('/login', async function (req,res){
-    let login=req.body.login;
+    const login=req.body.login;
     let mdp=req.body.password;
 
     mdp=md5(mdp);
@@ -59,6 +61,9 @@ app.post('/login', async function (req,res){
 });
 
 
+app.get('/catalogue',function (req,res){
+    res.render("catalogue", {error:null});
+})
 
 
 app.use(function(req,res){
