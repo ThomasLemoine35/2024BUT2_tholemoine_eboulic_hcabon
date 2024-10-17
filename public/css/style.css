@@ -64,4 +64,12 @@ footer img{
 
 .main_catalogue{
     display: flex;
+    height: 100%;
 }
+
+.div_filtres{
+    height:800px;
+    width:20%;
+    background-color: grey;
+}
+
