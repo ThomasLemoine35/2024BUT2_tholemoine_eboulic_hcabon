@@ -1,0 +1,44 @@
+header{
+    height: 1px;
+    width: 100%;
+    background-color: rgb(243, 190, 58);
+    margin:0;
+    margin-bottom:300px;
+    overflow-x: hidden;
+    overflow: auto;
+}
+
+.menu{
+
+    display:flex;
+    background-color: rgb(243, 190, 58);
+    list-style-type: none;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.menu img {
+    width: 20%;
+}
+
+
+.menu a{
+    text-decoration: none;
+    margin-left:20px;
+    color:black;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 3px;
+    font-size:20px;
+}
+
+#bouton_noir{
+    background-color: black;
+    color:white;
+    padding: 15px 20px;
+    border-radius: 3px;
+    margin-left:600px;
+    font-size:20px;
+
+}
+

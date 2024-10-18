@@ -1,9 +1,0 @@
-header{
-    height: 200px;
-    width: 100%;
-    background-color: rgb(243, 190, 58);
-    margin:0;
-
-    overflow-x: hidden;
-    overflow: auto;
-}
