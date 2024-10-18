@@ -1,0 +1,11 @@
+footer{
+    height:125px;
+    background-color: rgb(243, 190, 58);
+    padding: 10px;
+    display: flex;
+
+}
+
+footer img{
+    height: 50px;
+}
