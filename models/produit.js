@@ -16,7 +16,7 @@ async function getProduitById(id) {
 async function getTableProduit() {
     sql = "SELECT * FROM produit";
     return new Promise((resolve, reject) => {
-        bdd.query(sql, id, (err, results) => {
+        bdd.query(sql,(err, results) => {
             if (err) {
                 return reject(err);
             }
