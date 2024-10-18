@@ -1,13 +1,40 @@
 
 <%- include ('header'); -%>
 
+
 <main class="main_catalogue">
     <div class="div_filtres">
-
     </div>
-    <div class="div_equipements">
-        
+    <div id="div_equipements">   
     </div>
 </main>
 
+
+<script>
+    
+    let produits=<
+    
+
+
+const detProduits = document.getElementById('div_equipements');
+
+for (let equipments of produits) {
+    const equipArt = document.createElement('article');
+    detProduits.append(equipArt);
+
+    const titleH3 = document.createElement('h3');
+    titleH3.innerText = equipments.type;
+    equipArt.append(titleH3);
+    
+    const para = document.createElement('p');
+    para.innerText = equipments.description;
+    para.classList.add('desc-equipment');
+    equipArt.append(para);
+
+   
+}
+
+</script>
+
 <%- include ('footer'); -%>
+
