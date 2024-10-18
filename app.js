@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const userModel=require("./models/user.js");
+const produitModel=require("./models/produit.js")
 const session =require('express-session');
 const md5 = require('md5');
+
+
 
 app.set('view engine','ejs');
 
@@ -62,7 +65,10 @@ app.post('/login', async function (req,res){
 
 
 app.get('/catalogue',function (req,res){
-    res.render("catalogue", {error:null});
+    let produits = produitModel.getTableProduit();
+
+    res.render("catalogue", {produits});
+
 })
 
 
