@@ -9,7 +9,7 @@ header{
 }
 
 .menu{
-
+    align-items: center;
     display:flex;
     background-color: rgb(243, 190, 58);
     list-style-type: none;
