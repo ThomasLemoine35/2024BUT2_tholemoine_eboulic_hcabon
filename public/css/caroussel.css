@@ -8,6 +8,10 @@ button{
     margin-left:270px;
     z-index:3;
     border-radius: 3px;
+    border:none;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size:15px;
 
 }
 
