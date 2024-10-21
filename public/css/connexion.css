@@ -3,28 +3,38 @@ body{
 }
 
 .formulaire{
+    background-color: #fffcf5;
+    border-radius: 60px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    border-color: #fffcf5;
     width: 640px;
-    margin-left: 29%;
-    margin-top: 10%;
+    margin-left: 28%;
+    margin-top: 8%;
+    padding: 50px;
 }
 
 .zone_text{
     height: 85px;
+    width: 640px;
     margin-top: 30px;
     margin-bottom: 50px;
     border-radius: 50px;
     font-size: 2em;
+    flex-wrap: wrap;
+    padding-left: 20px;
 }
 
 #validation{
     height: 85px;
+    width: 640px;
     border-radius: 50px;
+    margin-top: 30px;
     font-size: 2em;
     cursor: pointer;
     background-color: #F7D660;
+    flex-wrap: wrap;
 }
 
 #validation:hover {
