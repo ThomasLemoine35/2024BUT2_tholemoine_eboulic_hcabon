@@ -3,6 +3,7 @@
 .main_catalogue{
     display: flex;
     height: 100%;
+    flex-direction: row;
 }
 
 .div_filtres{

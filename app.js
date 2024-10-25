@@ -42,6 +42,9 @@ app.get('/login',function (req,res){
     res.render("login", {error:null});
 })
 
+app.get('/catalogue',function (req,res){
+    res.render("catalogue", {error:null});
+})
 
 app.post('/login', async function (req,res){
     const login=req.body.login;
