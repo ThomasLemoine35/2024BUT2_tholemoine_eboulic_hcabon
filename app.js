@@ -38,6 +38,11 @@ app.get('/', async function(req,res){
     }
 });
 
+
+app.get('/inscription',function (req,res){
+    res.render("inscription", {error:null});
+})
+
 app.get('/login',function (req,res){
     res.render("login", {error:null});
 })
