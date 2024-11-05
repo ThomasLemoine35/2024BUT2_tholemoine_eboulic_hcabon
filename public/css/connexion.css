@@ -3,6 +3,7 @@ body{
 }
 
 .formulaire{
+    align-items: center;
     background-color: #fffcf5;
     border-radius: 60px;
     display: flex;
@@ -16,22 +17,23 @@ body{
 }
 
 .zone_text{
-    height: 85px;
-    width: 640px;
+    height: 55px;
+    width: 540px;
     margin-top: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     border-radius: 50px;
-    font-size: 2em;
+    font-size: 1.5em;
     flex-wrap: wrap;
     padding-left: 20px;
 }
 
+
 #validation{
-    height: 85px;
-    width: 640px;
+    height: 55px;
+    width: 240px;
     border-radius: 50px;
     margin-top: 30px;
-    font-size: 2em;
+    font-size: 1.5em;
     cursor: pointer;
     background-color: #F7D660;
     flex-wrap: wrap;
