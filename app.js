@@ -7,6 +7,7 @@ const md5 = require('md5');
 
 
 
+
 app.set('view engine','ejs');
 
 app.use(express.static('public'));
@@ -59,7 +60,7 @@ app.post('/login', async function (req,res){
 
     const user= await userModel.checkLogin(login);
 
-    if (user != false && user.password == mdp){
+    if (user != false && user.password == mdp && user.login == login){
         req.session.userId = user.id;
         req.session.role = user.type_utilisateur;
 
@@ -70,6 +71,25 @@ app.post('/login', async function (req,res){
         res.render("login",{error:"Mauvais Login/MDP"})
     }
 });
+
+// --------------test-----------//
+
+app.post("./inscription", (req, res) => {
+    const {  login, password } = req.body;
+
+    // Appelle la fonction pour enregistrer l'utilisateur
+    enregistrerUtilisateur(login, password, (err, result) => {
+        if (err) {
+            res.status(500).send("Erreur lors de l'enregistrement de l'utilisateur.");
+            console.log("Erreur lors de l'enregistrement de l'utilisateur.")
+        } else {
+            res.status(200).send("Utilisateur enregistré avec succès !");
+        }
+    });
+});
+
+// --------------test-----------//
+
 
 
 app.get('/catalogue',function (req,res){

@@ -1,9 +1,37 @@
 
-
-    <form class="formulaire" action="/login" method="post">
-        <label for="" ></label>
-        <input class="zone_text" placeholder="Votre identifiant" type="text" name="login"/>
-        <label for="" ></label>
-        <input class="zone_text" placeholder="Votre mot de passe" type="password" name="password"/>
-        <button id="validation" type="submit">Valider</button>
+    <form id="monFormulaire" method="post">
+        <label for="nom" ></label>
+        <input id="identifiant" placeholder="Votre identifiant" type="text" name="login"/>
+        <label for="prenom" ></label>
+        <input id="mdp" placeholder="Votre mot de passe" type="password" name="password"/>
+        <button id="envoie" type="submit">Valider</button>
     </form>
+
+    <script>
+        document.getElementById("monFormulaire").addEventListener("submit", function(event) {
+  event.preventDefault(); // Empêche le rechargement de la page
+
+  // Récupère les données du formulaire
+  const login = document.getElementById("identifiant").value;
+  const password = document.getElementById("mdp").value;
+
+  // Prépare les données pour l'envoi
+  const data = { login: password, password: mdp };
+
+// Envoie les données au serveur via fetch
+fetch("http://localhost:3000/inscription", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Réponse du serveur:", data);
+  })
+  .catch((error) => {
+    console.error("Erreur:", error);
+  });
+});
+    </script>
