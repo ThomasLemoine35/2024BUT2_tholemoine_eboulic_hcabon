@@ -74,18 +74,24 @@ app.post('/login', async function (req,res){
 
 // --------------test-----------//
 
-app.post("./inscription", (req, res) => {
-    const {  login, password } = req.body;
+app.post('/inscription', async function (req,res){
+    const log=req.body.login;
+    let pass=req.body.password;
 
-    // Appelle la fonction pour enregistrer l'utilisateur
-    enregistrerUtilisateur(login, password, (err, result) => {
-        if (err) {
-            res.status(500).send("Erreur lors de l'enregistrement de l'utilisateur.");
-            console.log("Erreur lors de l'enregistrement de l'utilisateur.")
-        } else {
-            res.status(200).send("Utilisateur enregistré avec succès !");
-        }
-    });
+    pass=md5(mdp);
+
+    const user= await userModel.enregistrerUtilisateur(log, pass);
+
+    if (user != false && user.password == pass && user.login == log){
+        req.session.userId = user.id;
+        req.session.role = user.type_utilisateur;
+
+        return res.redirect("/login");
+    }
+
+    else{
+        res.render("login",{error:"Mauvais Login/MDP"})
+    }
 });
 
 // --------------test-----------//

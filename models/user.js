@@ -24,21 +24,23 @@ async function checkLogin (login){
     });
 };
 
-async function enregistrerUtilisateur(login, password, callback) {
-    // Hachage du mot de passe
-    const mdp = md5(motDePasse);
+async function enregistrerUtilisateur(log, pass) {
 
-    // Requête SQL pour insérer les données dans la table utilisateur
-    const sql = "INSERT INTO utilisateur (login, password) VALUES (?, ?)";
-    pool.query(sql, [login, password], (err, result) => {
-        if (err) {
-            console.error("Erreur lors de l'insertion de l'utilisateur :", err);
-            callback(err, null);
-        } else {
-            console.log("Utilisateur ajouté avec succès !");
-            callback(null, result);
-        }
+    
+
+    // Hachage du mot de passe
+    const mdp = md5(pass);
+
+    let sql = "INSERT INTO utilisateur (login, password) VALUES (?, ?)";
+    return new Promise((resolve,reject)=>{
+        bdd.query(sql,[log,mdp],(err,results)=>{
+            if (err){
+                return reject(err);
+            }
+            resolve(results);
+        });
     });
+
 }
 
 
