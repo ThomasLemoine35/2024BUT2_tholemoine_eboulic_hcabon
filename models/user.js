@@ -26,9 +26,8 @@ async function checkLogin (login){
 
 async function enregistrerUtilisateur(log, pass) {
 
-    
-
     // Hachage du mot de passe
+    const md5 = require('md5');
     const mdp = md5(pass);
 
     let sql = "INSERT INTO utilisateur (login, password) VALUES (?, ?)";

@@ -78,9 +78,10 @@ app.post('/inscription', async function (req,res){
     const log=req.body.login;
     let pass=req.body.password;
 
-    pass=md5(mdp);
+    pass=md5(pass);
 
-    const user= await userModel.enregistrerUtilisateur(log, pass);
+    const userModelForInscription = require('./models/user');
+    const user = await userModelForInscription.enregistrerUtilisateur(log, pass);
 
     if (user != false && user.password == pass && user.login == log){
         req.session.userId = user.id;
