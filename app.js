@@ -59,7 +59,7 @@ app.post('/login', async function (req,res){
     mdp=md5(mdp);
 
     const user= await userModel.checkLogin(login);
-
+    console.log(user);
     if (user != false && user.password == mdp && user.login == login){
         req.session.userId = user.id;
         req.session.role = user.type_utilisateur;
@@ -87,13 +87,14 @@ app.post('/inscription', async function (req,res){
         req.session.userId = user.id;
         req.session.role = user.type_utilisateur;
 
-        return res.redirect("/login");
+        return log, pass, res.redirect("/login");
     }
 
     else{
         res.render("login",{error:"Mauvais Login/MDP"})
     }
 });
+
 
 // --------------test-----------//
 
