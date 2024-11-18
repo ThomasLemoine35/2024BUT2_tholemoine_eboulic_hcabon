@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="./css/connexion.css" type="text/css">
+
+<main>
+    <p><%= error %></p>
+    <%- include ('header'); -%>
+
+
+<form class="formulaire" action="/login" method="post">
+    <h1>Mes identifiants</h1>
+        <label for="" ></label>
+        <input class="zone_text" placeholder="Changer mon nom" type="text" name="nom"/>
+        
+        <label for="" ></label>
+        <input class="zone_text" placeholder="Changer mon prénom" type="text" name="prénom"/>
+
+        <label for="" ></label>
+        <input class="zone_text" placeholder="Changer ma date de naissance" type="text" name="ddn"/>
+
+        <label for="" ></label>
+        <input class="zone_text" placeholder="Changer mon mail" type="text" name="mail"/>
+
+        <label for="" ></label>
+        <input class="zone_text" placeholder="Changer mon mot de passe" type="password" name="password"/>
+        <button id="validation" type="submit">Confirmer mes changements</button>
+    </form>

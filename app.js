@@ -40,6 +40,10 @@ app.get('/', async function(req,res){
 });
 
 
+app.get('/informations',function (req,res){
+    res.render("informations", {error:null});
+})
+
 app.get('/inscription',function (req,res){
     res.render("inscription", {error:null});
 })
@@ -95,7 +99,26 @@ app.post('/inscription', async function (req,res){
     }
 });
 
+app.post('/index', async function (req,res){
+    const log=req.body.login;
+    let pass=req.body.password;
 
+    pass=md5(pass);
+
+    const userModelForInscription = require('./models/user');
+    const user = await userModelForInscription.enregistrerUtilisateur(log, pass);
+
+    if (user != false && user.password == pass && user.login == log){
+        req.session.userId = user.id;
+        req.session.role = user.type_utilisateur;
+
+        return log, pass, res.redirect("/login");
+    }
+
+    else{
+        res.render("login",{error:"Mauvais Login/MDP"})
+    }
+});
 // --------------test-----------//
 
 
@@ -115,3 +138,6 @@ app.use(function(req,res){
 app.listen(3000,function(){
     console.log('Server running on port 3000');
 });
+
+
+
