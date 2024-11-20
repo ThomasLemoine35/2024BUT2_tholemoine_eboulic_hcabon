@@ -4,79 +4,92 @@
 
 <main class="main_catalogue">
     <ul class = "menu_gauche">
-        <li><img src="./img/tapis_roulant.png">Tapis de course</li>
-        <li><img src="./img/velo.png">Vélo d'appartement</li>
-        <li><img src="./img/altere.png">Musculation</li>
-        <li><img src="./img/balles.png">Accessoires</li>
-        <li><img src="./img/chaussures.png">Fitness</li>
-        <li><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        <li><img src="./img/tapis_roulant.png"><button data-category="tapis">Tapis de course</button></li>
+        <li><img src="./img/velo.png"><button data-category="velo">Vélo d'appartement</button></li>
+        <li><img src="./img/altere.png"><button data-category="musculation">Musculation</button></li>
+        <li><img src="./img/balles.png"><button data-category="accessoire">Accessoires</button></li>
+        <li><img src="./img/chaussures.png"><button data-category="fit">Fitness</button></li>
+        <li>
         </li>
-    </ul>
+    </ul> 
 
-    <div id="div_equipements">
-        <div class="produit_test"></div>
-        <div class="produit_test"></div> 
-        <div class="produit_test"></div> 
-        <div class="produit_test"></div> 
-        <div class="produit_test"></div> 
-        <div class="produit_test"></div> 
-        <div class="produit_test"></div> 
-    </div>
+
+<div id="img_container">
+</div>
 </main>
 
-        
-
-
-
 <script>
-    
-    /*let produits=<
-    
+    const buttons = document.querySelectorAll('button[data-category]');
+const imageContainer = document.getElementById('img_container');
 
+// Images par catégorie
+const images = {
+    tapis: [
+    'img/1.png',
+    'img/2.png',
+    'img/3.png',
+    'img/4.png',
+    'img/5.png',
+    'img/6.png',
+    'img/7.png',
+    'img/8.png',
+  ],
+  velo: [
+    'img/9.png',
+    'img/10.png',
+    'img/11.png',
+    'img/12.png',
+    'img/13.png',
+    'img/14.png',
+    'img/15.png',
+    'img/16.png',
+  ],
+  musculation: [
+    'img/17.png',
+    'img/18.png',
+    'img/19.png',
+    'img/20.png',
+    'img/21.png',
+    'img/22.png',
+    'img/23.png',
+    'img/24.png',
+  ],
+  accessoire: [
+    'img/25.png',
+    'img/26.png',
+    'img/27.png',
+    'img/28.png',
+    'img/29.png',
+    'img/30.png',
+  ],
+  fit: [
+    'img/31.png',
+    'img/32.png',
+    'img/33.png',
+    'img/34.png',
+    'img/35.png',
+  ],
+};
 
-const detProduits = document.getElementById('div_equipements');
+// Ajouter un écouteur d'événements à chaque bouton
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Récupérer la catégorie associée au bouton
+    const category = button.getAttribute('data-category');
 
-for (let equipments of produits) {
-    const equipArt = document.createElement('article');
-    detProduits.append(equipArt);
+    // Vider le conteneur avant d'insérer les nouvelles images
+    imageContainer.innerHTML = '';
 
-    const titleH3 = document.createElement('h3');
-    titleH3.innerText = equipments.type;
-    equipArt.append(titleH3);
-    
-    const para = document.createElement('p');
-    para.innerText = equipments.description;
-    para.classList.add('desc-equipment');
-    equipArt.append(para);
-
-   
-}*/
-
+    // Ajouter les images de la catégorie sélectionnée
+    images[category].forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = category;
+      img.classList.add('produit_test');
+      imageContainer.appendChild(img);
+    });
+  });
+});
 </script>
 
 <%- include ('footer'); -%>

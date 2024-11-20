@@ -2,6 +2,8 @@ footer{
     height:125px;
     background-color: rgb(243, 190, 58);
     padding: 30px 45px;
+    width: 100%;
+    position: absolute; 
     display: flex;
     font-family: "Roboto", sans-serif;
 }

@@ -1,9 +1,37 @@
+/*menu à gauche*/
+
+.menu_gauche{
+    /*align-items: center;*/
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    width:20%;
+    height: 650px;
+    background-color:#f7e6c5;
+}
+
+.menu_gauche img {
+    width: 20%;
+    padding-right:10px;
+
+}
+
+ .menu_gauche li{
+    list-style-type: none;
+    background-color:#f7e6c5;
+    text-decoration: none;
+    color:black;
+    padding: 15px 20px;
+    border-radius: 3px;
+    font-size:15px;
+}
+
 /*Catalogue*/
 
 .main_catalogue{
     display: flex;
     height: 100%;
     flex-direction: row;
+    
 }
 
 .div_filtres{
@@ -29,7 +57,4 @@
     height:270px;
     width:270px;
     border:1px solid rgb(52, 52, 52);
-
-
-
 }

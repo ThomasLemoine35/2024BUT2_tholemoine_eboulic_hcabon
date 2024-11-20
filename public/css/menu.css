@@ -47,25 +47,4 @@ header{
 
 /*menu sur le coté*/
 
-.menu_gauche{
-    /*align-items: center;*/
-    font-weight: bold;
-    font-family: "Roboto", sans-serif;
-    width:20%;
-}
 
-.menu_gauche img {
-    width: 20%;
-    padding-right:10px;
-
-}
-
- .menu_gauche li{
-    list-style-type: none;
-    background-color:#f7e6c5;
-    text-decoration: none;
-    color:black;
-    padding: 15px 20px;
-    border-radius: 3px;
-    font-size:15px;
-}
