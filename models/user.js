@@ -12,6 +12,18 @@ async function getUserById (id){
     });
 }; 
 
+async function DonneesUsers (login){
+    sql="SELECT * FROM utilisateur WHERE login = ?";
+    return new Promise((resolve,reject)=>{
+        bdd.query(sql,login,(err,results)=>{
+            if (err){
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}; 
+
 async function checkLogin (login){
     sql="SELECT * FROM utilisateur where login = ?"; //login
     return new Promise((resolve,reject)=>{
@@ -23,6 +35,7 @@ async function checkLogin (login){
         });
     });
 };
+
 
 async function enregistrerUtilisateur(log, pass) {
 
@@ -43,4 +56,4 @@ async function enregistrerUtilisateur(log, pass) {
 }
 
 
-module.exports={getUserById, checkLogin, enregistrerUtilisateur};
+module.exports={getUserById, DonneesUsers, checkLogin, enregistrerUtilisateur};
