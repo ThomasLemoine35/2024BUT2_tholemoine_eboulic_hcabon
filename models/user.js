@@ -56,4 +56,6 @@ async function enregistrerUtilisateur(log, pass) {
 }
 
 
+
+
 module.exports={getUserById, DonneesUsers, checkLogin, enregistrerUtilisateur};

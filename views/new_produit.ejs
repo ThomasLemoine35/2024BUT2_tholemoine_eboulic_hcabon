@@ -1,0 +1,42 @@
+<%- include ('header'); -%>
+
+
+<main class="main_catalogue">
+    <ul class = "menu_gauche">
+        <li><img src="./img/tapis_roulant.png"><button data-category="tapis">Tapis de course</button></li>
+        <li><img src="./img/velo.png"><button data-category="velo">Vélo d'appartement</button></li>
+        <li><img src="./img/altere.png"><button data-category="musculation">Musculation</button></li>
+        <li><img src="./img/balles.png"><button data-category="accessoire">Accessoires</button></li>
+        <li><img src="./img/chaussures.png"><button data-category="fit">Fitness</button></li>
+        <li>
+        </li>
+    </ul> 
+
+
+
+
+    <div class="upload-container">
+        <h2>Uploader une image</h2>
+        <input type="file" id="imageInput" accept="image/*">
+        <br><br>
+        <button onclick="previewImage()">Prévisualiser</button>
+        <br><br>
+        <img id="imagePreview" alt="Prévisualisation de l'image">
+    </div>
+    
+    <script>
+        
+    // On importe le module sharp (il faut l'avoir installé avant)
+    
+    
+    /*
+    * Le module sharp permet le traitement d'image, et la fonction tint() permet de modifier les couleurs
+    */
+    
+    
+    </script>
+    </div>
+
+</main>
+
+<%- include ('footer'); -%>

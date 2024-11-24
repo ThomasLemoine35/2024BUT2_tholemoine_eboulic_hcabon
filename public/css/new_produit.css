@@ -1,0 +1,14 @@
+.upload-container {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+.upload-container img {
+    max-width: 100%;
+    height: auto;
+    display: none;
+    margin-top: 20px;
+}

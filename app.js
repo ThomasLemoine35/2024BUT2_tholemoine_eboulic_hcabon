@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const userModel=require("./models/user.js");
-const produitModel=require("./models/produit.js")
 const session =require('express-session');
 const md5 = require('md5');
 
 
 app.set('view engine', 'ejs'); // Configuration du moteur EJS
+
 
 //const login = "jdupont";
 //const nom=  userModel.DonneesUsers(login);
@@ -69,6 +69,10 @@ app.get('/inscription',function (req,res){
     res.render("inscription", {error:null});
 })
 
+app.get('/new_produit',function (req,res){
+    res.render("new_produit", {error:null});
+})
+
 app.get('/login',function (req,res){
     res.render("login", {error:null});
 })
@@ -97,7 +101,6 @@ app.post('/login', async function (req,res){
     }
 });
 
-// --------------test-----------//
 
 app.post('/inscription', async function (req,res){
     const log=req.body.login;
@@ -119,6 +122,14 @@ app.post('/inscription', async function (req,res){
         res.render("login",{error:"Mauvais Login/MDP"})
     }
 });
+
+//détecte le role client
+app.get('/catalogue', (req, res) => {
+    const role = [{ type_utilisateur: 'client' }];
+    const client = 'client';
+    res.render('catalogue', { role, client });
+});
+
 
 
 

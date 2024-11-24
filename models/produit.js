@@ -25,8 +25,27 @@ async function getTableProduit() {
     });
 };
 
+async function previewImage() {
+    const fileInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        }
+
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+        alert('Veuillez choisir un fichier image.');
+    }
+}
 
 
-module.exports={getProduitById, getTableProduit};
+
+
+module.exports={getProduitById, getTableProduit, previewImage};
 
 
