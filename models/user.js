@@ -1,4 +1,5 @@
 const bdd = require("./database.js");
+const mysql = require('mysql');
 
 async function getUserById (id){
     sql="SELECT * FROM utilisateur WHERE id= ?";
@@ -17,6 +18,22 @@ async function DonneesUsers (login){
     return new Promise((resolve,reject)=>{
         bdd.query(sql,login,(err,results)=>{
             if (err){
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}; 
+
+//fontion qui prend les 3 parametres qui sont donnés par le formulaire de la page informations
+async function ModifierDonnees (id, login, email, password){
+    sql="UPDATE utilisateur SET login = ?, email = ?, password = ? WHERE id = ?";
+    console.log(mysql.format(sql,[login,email,password,id]));
+    
+    return new Promise((resolve,reject)=>{
+        bdd.query(sql,[login,email,password,id],(err,results)=>{
+            if (err) {
+                console.error("Erreur lors de l'exécution de la requête :", err); // Log des erreurs
                 return reject(err);
             }
             resolve(results);
@@ -58,4 +75,4 @@ async function enregistrerUtilisateur(log, pass) {
 
 
 
-module.exports={getUserById, DonneesUsers, checkLogin, enregistrerUtilisateur};
+module.exports={getUserById, DonneesUsers, ModifierDonnees, checkLogin, enregistrerUtilisateur};

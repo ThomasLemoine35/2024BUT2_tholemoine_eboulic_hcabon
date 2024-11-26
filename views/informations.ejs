@@ -3,21 +3,14 @@
 <main>
     <p><%= error %></p>
     <%- include ('header'); -%>
-    <h1>Bienvenue, <%= nom %> !</h1>
 
-<form class="formulaire" action="/login" method="post">
+<form class="formulaire" action="/informations" method="post">
     <h1>Mes identifiants</h1>
         <label for="" ></label>
-        <input class="zone_text" placeholder="Changer mon nom" type="text" name="nom"/>
-        
-        <label for="" ></label>
-        <input class="zone_text" placeholder="Changer mon prénom" type="text" name="prénom"/>
+        <input class="zone_text" placeholder="<%= nom %>" type="login" name="login"/>
 
         <label for="" ></label>
-        <input class="zone_text" placeholder="Changer ma date de naissance" type="text" name="ddn"/>
-
-        <label for="" ></label>
-        <input class="zone_text" placeholder="Changer mon mail" type="text" name="mail"/>
+        <input class="zone_text" placeholder="<%= mail %>" type="email" name="email"/>
 
         <label for="" ></label>
         <input class="zone_text" placeholder="Changer mon mot de passe" type="password" name="password"/>

@@ -7,10 +7,6 @@ const md5 = require('md5');
 
 app.set('view engine', 'ejs'); // Configuration du moteur EJS
 
-
-//const login = "jdupont";
-//const nom=  userModel.DonneesUsers(login);
-
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:false}));
@@ -41,14 +37,10 @@ app.get('/', async function(req,res){
 });
 
 
-//app.get('/informations',function (req,res){
-//    res.render("informations", {nom, error:null});
-//});
-
 app.get('/informations', async function (req, res) {
     try {
         const login = "jdupont"; // Login de l'utilisateur à rechercher
-        const userData = await userModel.DonneesUsers(login); // Récupération des données utilisateur
+        const userData = await userModel.DonneesUsers(login); // Récupération des données utilisateur avec la fonction donnesUsers
 
         // Vérifie si l'utilisateur existe
         if (!userData || userData.length === 0) {
@@ -56,13 +48,18 @@ app.get('/informations', async function (req, res) {
         }
 
         // Passe les données utilisateur à la vue
-        const nom = userData[0].login; // Associe "nom" au champ login de la base de données
-        res.render("informations", { nom, error: null });
+        const nom = userData[0].login;
+        const mail = userData[0].email; // on selectionne login et email dans userdata 
+        res.render("informations", { nom, mail, error: null });
     } catch (err) {
         console.error("Erreur lors de la récupération des données utilisateur :", err);
         res.status(500).send("Erreur serveur");
     }
 });
+
+
+
+
 
 
 app.get('/inscription',function (req,res){
@@ -122,6 +119,35 @@ app.post('/inscription', async function (req,res){
         res.render("login",{error:"Mauvais Login/MDP"})
     }
 });
+
+// pour récupérer les info du formulaire pour modifier les donnees utilisateur et effectuer les changements dans la bdd
+app.post('/informations', async function (req, res) {
+    try {
+        console.log("Données reçues :", req.body);
+
+        const login = req.body.login;
+        const email = req.body.email;
+        const password = req.body.password;
+
+        if (!login || !email || !password) {
+            throw new Error("Les champs du formulaire sont vides");
+        }
+
+        const mdp = md5(password);
+        console.log("Mot de passe hashé :", mdp);
+
+        const user = await userModel.ModifierDonnees(1, login, email, mdp);
+        console.log("Résultat de ModifierDonnees :", user);
+
+        return res.redirect("/");
+    } catch (err) {
+        console.error("Erreur détectée :", err);
+        res.status(500).send("Une erreur s'est produite lors de la mise à jour des données.");
+    }
+});
+
+
+
 
 //détecte le role client
 app.get('/catalogue', (req, res) => {
