@@ -1,8 +1,9 @@
 .upload-container {
     border: 2px dashed #ccc;
     padding: 20px;
+    height: 200px;
     width: 300px;
-    margin: 0 auto;
+    margin: 150px 500px ;
     background-color: #f9f9f9;
 }
 

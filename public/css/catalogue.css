@@ -7,6 +7,7 @@
     width:20%;
     height: 650px;
     background-color:#f7e6c5;
+    
 }
 
 .menu_gauche img {
@@ -24,6 +25,12 @@
     border-radius: 3px;
     font-size:15px;
 }
+
+.categories{
+    background-color: #f7e6c5;
+    border: none;
+}
+
 
 /*Catalogue*/
 
@@ -62,5 +69,8 @@
 /*Boutoon du gérant pour ajouter un produit*/
 
 #Buttonproduit{
-    background-color: blue;
+    background-color: #f7e6c5;
+    border: none;
+    width: 100px;
+    height: 20px;
 }

@@ -16,6 +16,11 @@
 <body>
         <ul class="menu">
             <img href = "index.ejs" src="./img/logo_locfit.png" alt="logo">
+            <% if (typeof role !== 'undefined' && role !== 'client' && role !== 'agent') { %>
+                <li><a href="creation_gerant">Ajouter un Gérant</a></li>
+              <% } else { %>
+               <% console.log("Erreur :");%>
+              <% } %>
             <li><a id="bouton_noir" href = "inscription">S’inscrire</a></li>
             <li><a href = "login">Se Déconnecter</a></li>
 

@@ -4,15 +4,18 @@
 
 <main class="main_catalogue">
     <ul class = "menu_gauche">
-        <li><img src="./img/tapis_roulant.png"><button data-category="tapis">Tapis de course</button></li>
-        <li><img src="./img/velo.png"><button data-category="velo">Vélo d'appartement</button></li>
-        <li><img src="./img/altere.png"><button data-category="musculation">Musculation</button></li>
-        <li><img src="./img/balles.png"><button data-category="accessoire">Accessoires</button></li>
-        <li><img src="./img/chaussures.png"><button data-category="fit">Fitness</button></li>
+        <li><img src="./img/tapis_roulant.png"><button class="categories" data-category="tapis">Tapis de course</button></li>
+        <li><img src="./img/velo.png"><button class="categories" data-category="velo">Vélo d'appartement</button></li>
+        <li><img src="./img/altere.png"><button class="categories" data-category="musculation">Musculation</button></li>
+        <li><img src="./img/balles.png"><button class="categories" data-category="accessoire">Accessoires</button></li>
+        <li><img src="./img/chaussures.png"><button class="categories" data-category="fit">Fitness</button></li>
         <li>
+          <% if (role !== 'client' && role !== 'admin') { %>
+            <a id="Buttonproduit" href="new_produit">Ajouter un produit</a>
+        <% } else { %>
+        <% } %>
         </li>
     </ul> 
-
 
 <div id="img_container">
 </div>
@@ -92,10 +95,6 @@ buttons.forEach(button => {
 });
 
 </script>
-
-
-
-
 
 <%- include ('footer'); -%>
 
