@@ -1,0 +1,25 @@
+<%-include('header'); -%>
+
+<div class="container_catalogue">
+    <div class="product-list_catalogue">
+      <% products.forEach(function(element) { %>
+      <div class="product_catalogue">
+        <img
+          class="imgProduct"
+          src="/img/<%= element.image %>"
+          alt="<%= element.type %>"
+        />
+        <h2><%= element.marque %> <%= element.modele %></h2>
+        <p><%= element.prix_location %>€ /jour</p>
+        <div class="action-buttons">
+          <a href="/produit/<%= element.id %>">
+            <button class="add-to-cart" type="submit">Voir</button>
+          </a>
+            <button class="addToFav" type="button"><img class="favButton" src="/img/favoris.png" alt="ajouter aux favoris" /></button>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+  
+  <%- include('footer'); -%>

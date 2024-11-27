@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userModel=require("./models/user.js");
+const produitModel=require("./models/produit.js");
 const session =require('express-session');
 const md5 = require('md5');
 
@@ -76,7 +77,17 @@ app.get('/login',function (req,res){
 
 app.get('/catalogue',function (req,res){
     res.render("catalogue", {error:null});
-})
+});
+
+app.get('/test_catalogue', async function (req, res) {
+    try {
+        const products = await produitModel.getTableProduit();
+        res.render("test_catalogue", { products });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Erreur");
+    }
+});
 
 app.post('/login', async function (req,res){
     const login=req.body.login;
