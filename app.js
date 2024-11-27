@@ -41,25 +41,7 @@ app.get('/', async function(req,res){
 //    res.render("informations", {nom, error:null});
 //});
 
-app.get('/informations', async function (req, res) {
-    try {
-        const login = "jdupont"; // Login de l'utilisateur à rechercher
-        const userData = await userModel.DonneesUsers(login); // Récupération des données utilisateur
 
-        // Vérifie si l'utilisateur existe
-        if (!userData || userData.length === 0) {
-            return res.render("informations", { nom: "Utilisateur introuvable", error: null });
-        }
-
-        // Passe les données utilisateur à la vue
-        const nom = userData[0].login;
-        const type_utilisateur = userData[0].role; // Associe "nom" au champ login de la base de données
-        res.render("informations", { nom, type_utilisateur, error: null });
-    } catch (err) {
-        console.error("Erreur lors de la récupération des données utilisateur :", err);
-        res.status(500).send("Erreur serveur");
-    }
-});
 
 app.get('/inscription',function (req,res){
     res.render("inscription", {error:null});
@@ -86,21 +68,28 @@ app.get('/catalogue', async function (req, res) {
 });
 
 
-app.post('/login', async function (req, res) {
-    const login = req.body.login;
-    let mdp = req.body.password;
+//tentative pour prendre automatiquement le login de la personne connectee
+let transmettre_login = "";
+function transmettre(login) {
+    return transmettre_login = login;
+}
+app.post('/login', async function (req,res){
+    const login=req.body.login;
+    let mdp=req.body.password;
 
-    mdp = md5(mdp);
+    mdp=md5(mdp);
 
-    const user = await userModel.checkLogin(login);
-    if (user && user.password === mdp && user.login === login) {
-        req.session.userId = user.id; // Stocke l'ID utilisateur
-        req.session.role = user.type_utilisateur; // Stocke le rôle utilisateur
+    const user= await userModel.checkLogin(login);
+    console.log(user);
+    if (user != false && user.password == mdp && user.login == login){
+        req.session.userId = user.id;
+        req.session.role = user.type_utilisateur;
+        transmettre(login);
+        return res.redirect("/") ;
+    }
 
-        console.log("Session après connexion :", req.session); // Ajoutez ce log
-        return res.redirect("/");
-    } else {
-        res.render("login", { error: "Mauvais Login/MDP" });
+    else{
+        res.render("login",{error:"Mauvais Login/MDP"})
     }
 });
 
@@ -127,7 +116,74 @@ app.post('/inscription', async function (req,res){
 });
 
 
+
+app.get('/informations', async function (req, res) { //permet d'afficher dans le formulaire les données de l'utilisateur dans la page informations
+    try {
+        console.log("Mon user connecté c'est : ",transmettre_login);
+        let login = transmettre_login; // Login de l'utilisateur à rechercher
+        console.log(login);// ca marche alors pk après ca marche passs
+        const userData = await userModel.DonneesUsers(login); // Récupération des données utilisateur avec la fonction donnesUsers
+        console.log(userData);
+        // Vérifie si l'utilisateur existe
+        if (!userData || userData.length === 0) {
+            return res.render("informations", { nom: "Utilisateur introuvable", error: null });
+        }
+
+        const nom = userData[0].login;
+        const mail = userData[0].email; // on selectionne login et email dans userdata 
+        res.render("informations", { nom, mail, error: null });
+    } catch (err) {
+        console.error("Erreur lors de la récupération des données utilisateur :", err);
+        res.status(500).send("Erreur serveur");
+    }
+});
+
+
+
+// pour récupérer les info du formulaire pour modifier les donnees utilisateur et effectuer les changements dans la bdd
+app.post('/informations', async function (req, res) {
+    try {
+        console.log("Données reçues :", req.body);
+
+        const login = req.body.login;
+        const email = req.body.email;
+        const password = req.body.password;
+
+        if (!login || !email || !password) {
+            throw new Error("Les champs du formulaire sont vides");
+        }
+
+        const mdp = md5(password);
+        console.log("Mot de passe hashé :", mdp);
+
+        const user = await userModel.ModifierDonnees(1, login, email, mdp);
+        console.log("Résultat de ModifierDonnees :", user);
+
+        return res.redirect("/");
+    } catch (err) {
+        console.error("Erreur détectée :", err);
+        res.status(500).send("Une erreur s'est produite lors de la mise à jour des données.");
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// pour récupérer les info du formulaire pour modifier les donnees utilisateur et effectuer les changements dans la bdd
+
 //détecte le role client
+
+
+
 
 app.use(function(req,res){
     res.status(404).render("404");
