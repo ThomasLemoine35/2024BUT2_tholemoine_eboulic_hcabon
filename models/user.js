@@ -56,13 +56,11 @@ async function checkLogin (login){
 
 async function enregistrerUtilisateur(log, pass, lastname, prenom, ddn, mail, type_user) {
 
-    // Hachage du mot de passe
-    const md5 = require('md5');
-    const mdp = md5(pass);
+ 
 
     let sql = "INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur) VALUES (?, ?, ?, ?, ? ,?, ?)";
     return new Promise((resolve,reject)=>{
-        bdd.query(sql,[log, mdp, lastname, prenom, ddn, mail, type_user],(err,results)=>{
+        bdd.query(sql,[log, pass, lastname, prenom, ddn, mail, type_user],(err,results)=>{
             if (err){
                 return reject(err);
             }

@@ -47,6 +47,10 @@ app.get('/inscription',function (req,res){
     res.render("inscription", {error:null});
 })
 
+app.get('/creation_agent',function (req,res){
+    res.render("creation_agent", {error:null});
+})
+
 app.get('/new_produit',function (req,res){
     res.render("new_produit", {error:null});
 })
@@ -114,6 +118,31 @@ app.post('/inscription', async function (req,res){
         req.session.role = user.type_utilisateur;
 
         return log, pass, res.redirect("/login");
+    }
+
+    else{
+        res.render("login",{error:"Mauvais Login/MDP"})
+    }
+});
+
+app.post('/creation_agent', async function (req,res){
+    const log=req.body.login;
+    let pass=req.body.password;
+    const lastname = req.body.lastname;
+    const prenom = req.body.prenom;
+    const ddn = req.body.ddn;
+    const mail = req.body.mail;
+
+    pass=md5(pass);
+
+    const userModelForInscription = require('./models/user');
+    const user = await userModelForInscription.enregistrerUtilisateur(log, pass, lastname, prenom, ddn, mail, 'agent');
+
+    if (user != false && user.password == pass && user.login == log){
+        req.session.userId = user.id;
+        req.session.role = user.type_utilisateur;
+
+        return log, pass, res.redirect("/");
     }
 
     else{

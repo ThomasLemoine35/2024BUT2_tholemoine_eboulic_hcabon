@@ -1,0 +1,25 @@
+<%= error %>
+    <%- include ('header'); -%>
+
+    <form class="formulaire" method="post">
+        <label for="pseudo" ></label>
+        <input class="zone_text" placeholder="Son identifiant" type="text" name="login"/>
+
+        <label for="password" ></label>
+        <input class="zone_text" placeholder="Son mot de passe" type="password" name="password"/>
+
+        <label for="lastname" ></label>
+        <input class="zone_text" placeholder="Son nom" type="text" name="lastname"/>
+
+        <label for="prenom" ></label>
+        <input class="zone_text" placeholder="Son prénom" type="text" name="prenom"/>
+
+        <label for="naissance" ></label>
+        <input class="zone_text" placeholder="Son date de naissance" type="date" required pattern="\d{4}-\d{2}-\d{2}" name="ddn"/>
+
+        <label for="mail" ></label>
+        <input class="zone_text" placeholder="Son email" type="email" name="mail"/>
+
+      
+        <button class="validation" type="submit">Valider</button>
+    </form>
