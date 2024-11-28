@@ -77,6 +77,8 @@ app.post('/login', async function (req,res){
     const login=req.body.login;
     let mdp=req.body.password;
 
+    console.log("Données reçues : login =", login, "password =", mdp);
+
     mdp=md5(mdp);
 
     const user= await userModel.checkLogin(login);
@@ -97,11 +99,15 @@ app.post('/login', async function (req,res){
 app.post('/inscription', async function (req,res){
     const log=req.body.login;
     let pass=req.body.password;
+    const lastname = req.body.lastname;
+    const prenom = req.body.prenom;
+    const ddn = req.body.ddn;
+    const mail = req.body.mail;
 
     pass=md5(pass);
 
     const userModelForInscription = require('./models/user');
-    const user = await userModelForInscription.enregistrerUtilisateur(log, pass);
+    const user = await userModelForInscription.enregistrerUtilisateur(log, pass, lastname, prenom, ddn, mail, 'client');
 
     if (user != false && user.password == pass && user.login == log){
         req.session.userId = user.id;

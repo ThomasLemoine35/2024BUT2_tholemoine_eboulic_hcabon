@@ -28,7 +28,7 @@ body{
 }
 
 
-#validation{
+.validation{
     height: 55px;
     width: 240px;
     border-radius: 50px;

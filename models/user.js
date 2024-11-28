@@ -42,7 +42,7 @@ async function ModifierDonnees (id, login, email, password){
 }; 
 
 async function checkLogin (login){
-    sql="SELECT * FROM utilisateur where login = ?"; //login
+    sql="SELECT * FROM utilisateur WHERE login = ?"; //login
     return new Promise((resolve,reject)=>{
         bdd.query(sql,login,(err,results)=>{
             if (err){
@@ -54,15 +54,15 @@ async function checkLogin (login){
 };
 
 
-async function enregistrerUtilisateur(log, pass) {
+async function enregistrerUtilisateur(log, pass, lastname, prenom, ddn, mail, type_user) {
 
     // Hachage du mot de passe
     const md5 = require('md5');
     const mdp = md5(pass);
 
-    let sql = "INSERT INTO utilisateur (login, password) VALUES (?, ?)";
+    let sql = "INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur) VALUES (?, ?, ?, ?, ? ,?, ?)";
     return new Promise((resolve,reject)=>{
-        bdd.query(sql,[log,mdp],(err,results)=>{
+        bdd.query(sql,[log, mdp, lastname, prenom, ddn, mail, type_user],(err,results)=>{
             if (err){
                 return reject(err);
             }
