@@ -1,40 +1,9 @@
 <%- include ('header'); -%>
 
 <main>
-    <div class="document-center">
-        <!--This carousel-container only exists so we can do the 
-        aspect ratio tricks in CSS-->
-
-        <div class="carousel-container">
-          <div class="carousel" id="carousel-1" auto-scroll="7000">
-
-            <!--The uppermost screen will appear first. This is due to JavaScript-->
-            <section class="carousel-screen">
-              <img src="./img/premier.jpg" alt="Chaussures de sport" />
-            </section>
-
-            <section class="carousel-screen">
-              <img src="./img/premier.jpg" alt="Chaussures de sport" />
-            </section>
-
-            <section class="carousel-screen">
-              <img src= "./img/premier.jpg" alt="Chaussures de sport" />
-            </section>
-
-            <!--These are not screens. They will always be on carousel-->
-            <div class="left-arrow">
-              <span class="chevron left"></span>
-            </div>
-            
-            <div class="right-arrow">
-              <span class="chevron right"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script src="./controleurs/carousel.js"></script>
+  <img class="img_accueil" src="./img/premier.jpg" alt="Chaussures de sport" />
       
-      <div class="button-container">
+  <div class="button-container">
         <img src="/img/raquette.png" alt="raquette de tennis" class="img">
       <a href="catalogue"><button class="b">Nos Produits</button></a>
       </div>
