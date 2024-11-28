@@ -15,7 +15,7 @@
 </head>
 <body>
         <ul class="menu">
-            <img href = "index.ejs" src="./img/logo_locfit.png" alt="logo">
+            <a  id ="container_img" href = "login"><img id ="logo" src="./img/logo_locfit.png" alt="logo"></a>
             <% if (typeof role !== 'undefined' && role !== 'client' && role !== 'agent') { %>
                 <li><a href="creation_agent">Ajouter un Agent</a></li>
               <% } else { %>
