@@ -16,6 +16,7 @@
 <body>
         <ul class="menu">
             <a  id ="container_img" href = "login"><img id ="logo" src="./img/logo_locfit.png" alt="logo"></a>
+            <!-- affiche un lien vers la page pour ajouter un agent, s'affiche seulement si c'est l'admin qui est connecté-->
             <% if (typeof role !== 'undefined' && role !== 'client' && role !== 'agent') { %>
                 <li><a href="creation_agent">Ajouter un Agent</a></li>
               <% } else { %>

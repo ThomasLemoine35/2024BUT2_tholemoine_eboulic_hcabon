@@ -6,10 +6,6 @@ const md5 = require('md5');
 
 app.set('view engine', 'ejs'); // Configuration du moteur EJS
 
-
-//const login = "jdupont";
-//const nom=  userModel.DonneesUsers(login);
-
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:false}));
@@ -19,6 +15,8 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
 }));
+
+// On a des routes pour afficher des pages et récupérer des informations avec les get
 
 app.get('/', async function(req,res){
 
@@ -37,12 +35,6 @@ app.get('/', async function(req,res){
 });
 
 
-//app.get('/informations',function (req,res){
-//    res.render("informations", {nom, error:null});
-//});
-
-
-
 app.get('/inscription',function (req,res){
     res.render("inscription", {error:null});
 })
@@ -59,6 +51,7 @@ app.get('/login',function (req,res){
     res.render("login", {error:null});
 })
 
+// Envoyer à la page catalogue la constante rôle
 app.get('/catalogue', async function (req, res) {
     try {
 
@@ -72,11 +65,17 @@ app.get('/catalogue', async function (req, res) {
 });
 
 
-//tentative pour prendre automatiquement le login de la personne connectee
+
+//la fonction permet d'identifier la personne qui se connecte et est utilisée dans des fonctions en dessous
 let transmettre_login = "";
 function transmettre(login) {
     return transmettre_login = login;
 }
+
+
+// On a des fonctions post qui récupèrent les informations dans leurs pages via des formulaires
+
+
 app.post('/login', async function (req,res){
     const login=req.body.login;
     let mdp=req.body.password;
@@ -99,8 +98,11 @@ app.post('/login', async function (req,res){
     }
 });
 
+// Cette fonction récupère les informations d'une personne à la création de son compte, elle appelle
+// une fonction dans user.js qui rentre ces info dans la bdd
 
 app.post('/inscription', async function (req,res){
+    //Récupération des données du formulaire d'inscription
     const log=req.body.login;
     let pass=req.body.password;
     const lastname = req.body.lastname;
@@ -113,6 +115,7 @@ app.post('/inscription', async function (req,res){
     const userModelForInscription = require('./models/user');
     const user = await userModelForInscription.enregistrerUtilisateur(log, pass, lastname, prenom, ddn, mail, 'client');
 
+    //Validation de l'inscription
     if (user != false && user.password == pass && user.login == log){
         req.session.userId = user.id;
         req.session.role = user.type_utilisateur;
@@ -151,7 +154,7 @@ app.post('/creation_agent', async function (req,res){
 });
 
 
-
+// Cette fonction récupère les infos de l'utilisateur et les affiche dans le formulaire de la page informations
 app.get('/informations', async function (req, res) { //permet d'afficher dans le formulaire les données de l'utilisateur dans la page informations
     try {
         console.log("Mon user connecté c'est : ",transmettre_login);
@@ -177,7 +180,9 @@ app.get('/informations', async function (req, res) { //permet d'afficher dans le
 
 
 
-// pour récupérer les info du formulaire pour modifier les donnees utilisateur et effectuer les changements dans la bdd
+// Cette fontion récupère les info du formulaire de la page informations, et elle appelle une fonction dans user.js 
+//pour modifier les donnees de l'utilisateur dans la bdd
+
 app.post('/informations', async function (req, res) {
     try {
         console.log("Données reçues :", req.body);
@@ -206,21 +211,6 @@ app.post('/informations', async function (req, res) {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-// pour récupérer les info du formulaire pour modifier les donnees utilisateur et effectuer les changements dans la bdd
-
-//détecte le role client
 
 
 

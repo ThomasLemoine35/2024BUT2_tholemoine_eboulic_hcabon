@@ -13,6 +13,8 @@ async function getUserById (id){
     });
 }; 
 
+// Cette fonction va donner toutes les informations d'une personne
+// elle la cherche avec son login
 async function DonneesUsers (login){
     sql="SELECT * FROM utilisateur WHERE login = ?";
     return new Promise((resolve,reject)=>{
@@ -25,7 +27,8 @@ async function DonneesUsers (login){
     });
 }; 
 
-//fontion qui prend les 3 parametres qui sont donnés par le formulaire de la page informations
+// Cette fonction va modifier TOUTES les données d'une personne qui est déjà dans la bdd
+// elle prend en paramètres TOUTES les infos de la personne et la cherche avec son ID
 async function ModifierDonnees (id, nom, prenom, ddn, email, mdp){
     sql="UPDATE utilisateur SET nom = ?, prenom = ?, ddn = ?, email = ?, password = ? WHERE id = ?";
     console.log(mysql.format(sql,[nom,prenom,ddn,email,mdp,id]));
@@ -53,6 +56,8 @@ async function checkLogin (login){
     });
 };
 
+
+// Cette fonction cherche dans la bdd une personne et donne son ID
 async function GetID (login){
     sql="SELECT id FROM utilisateur WHERE login = ?"; 
     console.log(mysql.format(sql,login));
