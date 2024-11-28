@@ -6,13 +6,21 @@
 
 <form class="formulaire" action="/informations" method="post">
     <h1>Mes identifiants</h1>
+    
         <label for="" ></label>
-        <input class="zone_text" placeholder="<%= nom %>" type="login" name="login"/>
+        <input class="zone_text" placeholder="<%= nom %>" type="nom" name="nom"/>
+
+        <label for="" ></label>
+        <input class="zone_text" placeholder="<%= prenom %>" type="prenom" name="prenom"/>
+
+        <label for="naissance" ></label>
+        <input class="zone_text" placeholder="<%= ddn %>" type="date"  name="ddn"/>
 
         <label for="" ></label>
         <input class="zone_text" placeholder="<%= mail %>" type="email" name="email"/>
 
         <label for="" ></label>
         <input class="zone_text" placeholder="Changer mon mot de passe" type="password" name="password"/>
-        <button id="validation" type="submit">Confirmer mes changements</button>
+        
+        <button class="validation" type="submit">Confirmer mes changements</button>
     </form>

@@ -156,7 +156,7 @@ app.get('/informations', async function (req, res) { //permet d'afficher dans le
     try {
         console.log("Mon user connecté c'est : ",transmettre_login);
         let login = transmettre_login; // Login de l'utilisateur à rechercher
-        console.log(login);// ca marche alors pk après ca marche passs
+        console.log(login);
         const userData = await userModel.DonneesUsers(login); // Récupération des données utilisateur avec la fonction donnesUsers
         console.log(userData);
         // Vérifie si l'utilisateur existe
@@ -164,9 +164,11 @@ app.get('/informations', async function (req, res) { //permet d'afficher dans le
             return res.render("informations", { nom: "Utilisateur introuvable", error: null });
         }
 
-        const nom = userData[0].login;
-        const mail = userData[0].email; // on selectionne login et email dans userdata 
-        res.render("informations", { nom, mail, error: null });
+        const nom = userData[0].nom;
+        const prenom = userData[0].prenom;
+        const ddn = userData[0].ddn;
+        const mail = userData[0].email; // on selectionne login et email etc dans userdata 
+        res.render("informations", { nom, prenom, ddn, mail, error: null });
     } catch (err) {
         console.error("Erreur lors de la récupération des données utilisateur :", err);
         res.status(500).send("Erreur serveur");
@@ -180,18 +182,21 @@ app.post('/informations', async function (req, res) {
     try {
         console.log("Données reçues :", req.body);
 
-        const login = req.body.login;
+        const nom = req.body.nom;
+        const prenom = req.body.prenom;
+        const ddn = req.body.ddn;
         const email = req.body.email;
         const password = req.body.password;
-
-        if (!login || !email || !password) {
-            throw new Error("Les champs du formulaire sont vides");
-        }
+        console.log("mdp : ",password);
 
         const mdp = md5(password);
         console.log("Mot de passe hashé :", mdp);
 
-        const user = await userModel.ModifierDonnees(1, login, email, mdp);
+        const recup_id = await userModel.GetID(transmettre_login);
+        console.log("mon id : ", recup_id);
+        const id = recup_id.id;
+        console.log("mon nom : ", nom);
+        const user = await userModel.ModifierDonnees(id, nom, prenom, ddn, email, mdp);
         console.log("Résultat de ModifierDonnees :", user);
 
         return res.redirect("/");
