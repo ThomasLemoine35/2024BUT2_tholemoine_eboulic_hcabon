@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="./css/connexion.css" type="text/css">
+
+<main>
+    <p><%= error %></p>
+    <%- include ('header'); -%>
+
+<form class="formulaire" action="/informations" method="post">    
+        <label for="" ></label>
+        <input class="zone_text" placeholder="Voulez vous supprimer votre compte ?" type="choix" name="choix"/>
+
+        <button class="validation" type="submit">Confirmer mes changements</button>
+    </form>

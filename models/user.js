@@ -88,7 +88,17 @@ async function enregistrerUtilisateur(log, pass, lastname, prenom, ddn, mail, ty
 
 }
 
+async function supprimer (login){
+    sql="DELETE * FROM utilisateur WHERE login = ?";
+    return new Promise((resolve,reject)=>{
+        bdd.query(sql,login,(err,results)=>{
+            if (err){
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}; 
 
 
-
-module.exports={getUserById, DonneesUsers, ModifierDonnees, checkLogin, GetID, enregistrerUtilisateur};
+module.exports={getUserById, DonneesUsers, ModifierDonnees, checkLogin, GetID, supprimer, enregistrerUtilisateur};

@@ -51,6 +51,10 @@ app.get('/login',function (req,res){
     res.render("login", {error:null});
 })
 
+app.get('/page_supprime',function (req,res){
+    res.render("page_supprime", {error:null});
+})
+
 // Envoyer à la page catalogue la constante rôle
 app.get('/catalogue', async function (req, res) {
     try {
@@ -211,6 +215,24 @@ app.post('/informations', async function (req, res) {
     }
 });
 
+// cette fonction supprime le compte d'un utilisateur si il met en choix "oui"
+app.post('/page_supprime', async function (req,res){
+    try {
+        const choix = req.body.choix;
+        console.log("Données reçues :", choix);
+        if(choix == "oui"){
+            const userModelForInscription = require('./models/user');
+            const suppr = await userModelForInscription.supprimer(transmettre_login(transmettre_login));
+            return res.redirect("/login");
+        }
+        
+    }
+
+    catch (err) {
+    console.error("Erreur détectée :", err);
+    res.status(500).send("Une erreur s'est produite lors de la mise à jour des données.");
+}
+});
 
 
 
